@@ -10,8 +10,18 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jsdom",
+    "format": "prettier-standard 'src/**/*js'",
+    "precommit": "lint-staged",
     "eject": "react-scripts eject"
+  },
+  "lint-staged": {
+    "linters": {
+      "src/**/*.js": [
+        "prettier-standard",
+        "git add"
+      ]
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -21,5 +31,11 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "eslint": "^5.6.1",
+    "husky": "^1.1.1",
+    "lint-staged": "^7.3.0",
+    "prettier-standard": "^8.0.1"
+  }
 }
