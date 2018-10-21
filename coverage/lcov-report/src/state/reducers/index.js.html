@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for src/components/Board/index.js</title>
+    <title>Code coverage report for src/state/reducers/index.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="..\..\..\prettify.css" />
     <link rel="stylesheet" href="..\..\..\base.css" />
@@ -16,28 +16,28 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="..\..\..\index.html">All files</a> / <a href="index.html">src/components/Board</a> index.js
+      <a href="..\..\..\index.html">All files</a> / <a href="index.html">src/state/reducers</a> index.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>6/6</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>1/1</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>4/4</span>
       </div>
     </div>
   </div>
@@ -61,7 +61,18 @@
 16
 17
 18
-19</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+19
+20
+21
+22</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -70,34 +81,32 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import styled from 'styled-components'
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// src/state/reducers/index.js
+import { isUndefined } from 'ramda-adjunct'
 &nbsp;
-const Board = styled.div`
-  align-self: center;
-  display: grid;
-  grid-area: board;
-  grid-gap: 0;
-  grid-template-areas: 'zero one two' 'three four five' 'six seven eight';
-  grid-template-columns: 20vh 20vh 20vh;
-  grid-template-rows: 20vh 20vh 20vh;
-  height: 60vh;
-  justify-self: center;
-  margin: auto;
-  width: 60vh;
-`
-Board.displayName = 'Board'
+import { SQUARE_CLICKED } from '..'
 &nbsp;
-export default Board
-&nbsp;</pre></td></tr>
+const initialState = { moves: [] }
+&nbsp;
+function rootReducer (state = initialState, { payload = {}, type }) {
+  switch (type) {
+    case SQUARE_CLICKED:
+      return {
+        ...state,
+        moves: isUndefined(payload.square)
+          ? state.moves
+          : [...state.moves, payload.square]
+      }
+    default:
+      return state
+  }
+}
+&nbsp;
+export { initialState, rootReducer }</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
