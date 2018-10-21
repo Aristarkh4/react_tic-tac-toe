@@ -1,3 +1,4 @@
+// src/containers/Square/index.spec.js
 import React from 'react'
 import { shallow } from 'enzyme'
 import configureStore from 'redux-mock-store'
@@ -17,6 +18,22 @@ describe('containers:Square', () => {
       expect.objectContaining({
         player: 'x',
         handleClick: expect.any(Function)
+      })
+    )
+  })
+
+  it(`maps state properly to props when the game is over`, () => {
+    const square = 4
+    const store = mockStore({
+      moves: [0, 1, 4, 5, 8],
+      winningSquares: [0, 4, 8],
+      winningPlayer: 'x'
+    })
+    const wrapper = shallow(<Square index={square} store={store} />)
+
+    expect(wrapper.props()).toEqual(
+      expect.objectContaining({
+        isWinningSquare: true
       })
     )
   })
