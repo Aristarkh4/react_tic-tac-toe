@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for src/containers/Square/index.js</title>
+    <title>Code coverage report for src/utilities/getBoard/index.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="..\..\..\prettify.css" />
     <link rel="stylesheet" href="..\..\..\base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="..\..\..\index.html">All files</a> / <a href="index.html">src/containers/Square</a> index.js
+      <a href="..\..\..\index.html">All files</a> / <a href="index.html">src/utilities/getBoard</a> index.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>4/4</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/3</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>4/4</span>
+        <span class='fraction'>1/1</span>
       </div>
     </div>
   </div>
@@ -51,61 +51,22 @@
 6
 7
 8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+9</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { connect } from 'react-redux'
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// src/utilities/getBoard/index.js
+import { identity, map, times } from 'ramda'
 &nbsp;
-import Square from '../../components/Square'
-import { getMoves, squareClicked } from '../../state'
-import { getPlayer } from '../../utilities'
+import { getPlayer } from '..'
 &nbsp;
-function mapStateToProps (state, { index }) {
-  const moves = getMoves(state)
-&nbsp;
-  return {
-    player: getPlayer(index, moves)
-  }
+export default function getBoard (moves) {
+  return map(square =&gt; getPlayer(square, moves), times(identity, 9))
 }
-&nbsp;
-function mapDispatchToProps (dispatch, { index }) {
-  return {
-    handleClick: () =&gt; dispatch(squareClicked(index))
-  }
-}
-&nbsp;
-export default connect(mapStateToProps, mapDispatchToProps)(Square)
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
